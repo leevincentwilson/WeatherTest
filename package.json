@@ -18,10 +18,11 @@
     "axios": "^0.18.0",
     "mobx": "^5.8.0",
     "mobx-react": "^5.4.3",
+    "prop-types": "^15.6.2",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "typeface-roboto": "^0.0.54",
-    "ss-clean-webpack": "^1.0.25"
+    "ss-clean-webpack": "^1.0.25",
+    "typeface-roboto": "^0.0.54"
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.babel.js",
