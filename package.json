@@ -9,15 +9,19 @@
   "devDependencies": {
     "ss-clean-babel": "^1.0.14",
     "ss-clean-lint": "^1.0.4",
-    "ss-clean-slate": "^1.0.52",
-    "ss-clean-webpack": "^1.0.25"
+    "ss-clean-slate": "^1.0.52"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.2.5",
     "@material-ui/core": "^3.8.3",
     "@material-ui/icons": "^3.0.2",
+    "axios": "^0.18.0",
+    "mobx": "^5.8.0",
+    "mobx-react": "^5.4.3",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "typeface-roboto": "^0.0.54"
+    "typeface-roboto": "^0.0.54",
+    "ss-clean-webpack": "^1.0.25"
   },
   "scripts": {
     "start": "webpack-dev-server --config config/webpack.dev.babel.js",

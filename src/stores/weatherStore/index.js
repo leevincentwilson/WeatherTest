@@ -1,0 +1,19 @@
+import { observable } from 'mobx';
+import axios from 'axios';
+
+class WeatherStore {
+  @observable inFlight = false;
+
+  @observable weatherData;
+
+  getWeatherFor = async (city = 'london') => {
+    this.inFlight = true;
+
+    const response = await axios.get(`http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=4bb8a0e7b2c356812e0148ca915f14f2`);
+    this.inFlight = false;
+    console.log(response.data);
+    this.weatherData = response.data;
+  }
+}
+
+export default new WeatherStore();
