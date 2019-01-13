@@ -3,9 +3,12 @@ import React, { Component } from 'react';
 import { observer, PropTypes as MobXPropTypes } from 'mobx-react';
 import PropTypes from 'prop-types';
 
+import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import WeatherStore from '../../stores/weatherStore';
 import WithStore from '../withStore';
+
+import WeatherIcon from '../weatherIcon';
 
 const styles = {};
 class WeatherComponent extends Component {
@@ -44,10 +47,14 @@ class WeatherComponent extends Component {
     if (!weatherData) {
       return null;
     }
+
     return (
-      <div>
-        WeatherComoonents
-      </div>
+      <Paper elevation={1}>
+        {weatherData.name}
+        {Math.round(weatherData.main.temp - 273)}
+        {weatherData.weather[0].description}
+        <WeatherIcon iconId={weatherData.weather[0].icon} />
+      </Paper>
     );
   }
 }
