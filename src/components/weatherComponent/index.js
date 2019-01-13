@@ -64,6 +64,7 @@ class WeatherComponent extends Component {
     }
 
     const weatherDatum = weatherData.weather[0];
+    const now  = new Date();
     return (
       <Card className={classes.card}>
         <CardMedia
@@ -76,6 +77,12 @@ class WeatherComponent extends Component {
         <CardContent className={classes.content}>
           <Typography gutterBottom variant="h5" component="h2">
             {`${weatherData.name} ${Math.round(weatherData.main.temp - 273)}°C`}
+          </Typography>
+          <Typography component="p">
+            {now.toLocaleString('en-US', { hour: 'numeric', minute:'numeric', hour12: true })}
+          </Typography>
+          <Typography component="p">
+            {now.toLocaleDateString()}
           </Typography>
           <Typography component="p">
             {uppercaseString(weatherDatum.description)}
