@@ -1,0 +1,28 @@
+{
+  "name": "WeatherTest",
+  "version": "1.0.0",
+  "description": "A simple weather component",
+  "main": "index.js",
+  "repository": "https://github.com/leevincentwilson/WeatherTest.git",
+  "author": "Lee Vincent Wilson",
+  "license": "MIT",
+  "devDependencies": {
+    "ss-clean-babel": "^1.0.14",
+    "ss-clean-lint": "^1.0.4",
+    "ss-clean-slate": "^1.0.52",
+    "ss-clean-webpack": "^1.0.25"
+  },
+  "dependencies": {
+    "@material-ui/core": "^3.8.3",
+    "@material-ui/icons": "^3.0.2",
+    "react": "^16.7.0",
+    "react-dom": "^16.7.0",
+    "typeface-roboto": "^0.0.54"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --config config/webpack.dev.babel.js",
+    "build": "webpack --config config/webpack.production.babel.js",
+    "test": "jest",
+    "lint": "eslint --ext .js src --config ./config/.eslintrc.js"
+  }
+}
