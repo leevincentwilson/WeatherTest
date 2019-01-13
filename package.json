@@ -7,6 +7,7 @@
   "author": "Lee Vincent Wilson",
   "license": "MIT",
   "devDependencies": {
+    "image-webpack-loader": "^4.6.0",
     "ss-clean-babel": "^1.0.14",
     "ss-clean-lint": "^1.0.4",
     "ss-clean-slate": "^1.0.52"

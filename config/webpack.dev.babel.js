@@ -1,15 +1,13 @@
 const defaultConfig = require('ss-clean-webpack/src/webpack.dev.babel');
-
+const images = require('./loaderConfigs/images')
 const config = (env) => {
   const newConfig = defaultConfig(env);
   newConfig.entry = ['@babel/polyfill', ...newConfig.entry];
   newConfig.devServer = {
-    historyApiFallback: true,
-    overlay: true,
+    ...newConfig.devServer,
     open: true,
-    stats: 'errors-only',
-    port: 8080,
-  }
+  };
+  newConfig.module.rules.push(images);
   return newConfig;
 };
 

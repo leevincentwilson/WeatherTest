@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
 
-import { observer, PropTypes as MobXPropTypes } from 'mobx-react';
+import { observer } from 'mobx-react';
 import PropTypes from 'prop-types';
 
-import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
-import WeatherStore from '../../stores/weatherStore';
+
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
 import WithStore from '../withStore';
+import WeatherStore from '../../stores/weatherStore';
 
-import WeatherIcon from '../weatherIcon';
+import weatherBackgrounds from '../../helpers/weatherBackground';
 
-const styles = {};
+const styles = {
+  card: {
+    maxWidth: 345,
+    padding: 0,
+  },
+  content: {
+    textAlign: 'center',
+  },
+};
+
+
 class WeatherComponent extends Component {
   static propTypes = {
+    classes: PropTypes.object.isRequired,
     store: PropTypes.shape({
       getWeatherFor: PropTypes.func.isRequired,
       inFlight: PropTypes.bool.isRequired,
@@ -41,20 +56,36 @@ class WeatherComponent extends Component {
     super(props);
     props.store.getWeatherFor();
   }
+  uppercaseString(string){
+    return (string.charAt(0).toUpperCase() + string.slice(1));
+  }
 
   render() {
     const { weatherData } = this.props.store;
+    const { classes } = this.props;
     if (!weatherData) {
       return null;
     }
 
+    const weatherDatum = weatherData.weather[0];
     return (
-      <Paper elevation={1}>
-        {weatherData.name}
-        {Math.round(weatherData.main.temp - 273)}
-        {weatherData.weather[0].description}
-        <WeatherIcon iconId={weatherData.weather[0].icon} />
-      </Paper>
+      <Card className={classes.card}>
+        <CardMedia
+          component="img"
+          alt={weatherDatum.description}
+          className={classes.media}
+          image={weatherBackgrounds[weatherDatum.icon]}
+          title="Contemplative Reptile"
+        />
+        <CardContent className={classes.content}>
+          <Typography gutterBottom variant="h5" component="h2">
+            {`${weatherData.name} ${Math.round(weatherData.main.temp - 273)}°C`}
+          </Typography>
+          <Typography component="p">
+            {this.uppercaseString(weatherDatum.description)}
+          </Typography>
+        </CardContent>
+      </Card>
     );
   }
 }
