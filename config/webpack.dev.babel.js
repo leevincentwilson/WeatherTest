@@ -1,5 +1,6 @@
 const defaultConfig = require('ss-clean-webpack/src/webpack.dev.babel');
-const images = require('./loaderConfigs/images')
+const images = require('./loaderConfigs/images');
+
 const config = (env) => {
   const newConfig = defaultConfig(env);
   newConfig.entry = ['@babel/polyfill', ...newConfig.entry];

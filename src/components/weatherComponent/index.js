@@ -24,6 +24,7 @@ const styles = {
   },
 };
 
+const uppercaseString = string => (string.charAt(0).toUpperCase() + string.slice(1));
 
 class WeatherComponent extends Component {
   static propTypes = {
@@ -56,9 +57,6 @@ class WeatherComponent extends Component {
     super(props);
     props.store.getWeatherFor();
   }
-  uppercaseString(string){
-    return (string.charAt(0).toUpperCase() + string.slice(1));
-  }
 
   render() {
     const { weatherData } = this.props.store;
@@ -82,7 +80,7 @@ class WeatherComponent extends Component {
             {`${weatherData.name} ${Math.round(weatherData.main.temp - 273)}°C`}
           </Typography>
           <Typography component="p">
-            {this.uppercaseString(weatherDatum.description)}
+            {uppercaseString(weatherDatum.description)}
           </Typography>
         </CardContent>
       </Card>
