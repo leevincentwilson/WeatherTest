@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import { withStyles } from '@material-ui/core/styles';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -15,6 +16,9 @@ import WeatherStore from '../../stores/weatherStore';
 import weatherBackgrounds from '../../helpers/weatherBackground';
 
 const styles = {
+  progress: {
+    margin: 24,
+  },
   card: {
     maxWidth: 345,
     padding: 0,
@@ -36,17 +40,11 @@ class WeatherComponent extends Component {
         name: PropTypes.string.isRequired,
         main: PropTypes.shape({
           temp: PropTypes.number.isRequired,
-          pressure: PropTypes.number.isRequired,
-          humidity: PropTypes.number.isRequired,
-          temp_min: PropTypes.number.isRequired,
-          temp_max: PropTypes.number.isRequired,
         }).isRequired,
         weather: PropTypes.arrayOf(
           PropTypes.shape({
             description: PropTypes.string.isRequired,
             icon: PropTypes.string.isRequired,
-            id: PropTypes.number.isRequired,
-            main: PropTypes.string.isRequired,
           }).isRequired,
         ).isRequired,
       }),
@@ -59,10 +57,10 @@ class WeatherComponent extends Component {
   }
 
   render() {
-    const { weatherData } = this.props.store;
+    const { weatherData, inFlight } = this.props.store;
     const { classes } = this.props;
-    if (!weatherData) {
-      return null;
+    if (!weatherData || inFlight) {
+      return <CircularProgress className={classes.progress} />;
     }
 
     const weatherDatum = weatherData.weather[0];
