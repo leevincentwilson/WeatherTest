@@ -71,7 +71,7 @@ class WeatherComponent extends Component {
           alt={weatherDatum.description}
           className={classes.media}
           image={weatherBackgrounds[weatherDatum.icon]}
-          title="Contemplative Reptile"
+          title={weatherDatum.description}
         />
         <CardContent className={classes.content}>
           <Typography gutterBottom variant="h5" component="h2">
